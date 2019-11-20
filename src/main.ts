@@ -1,24 +1,17 @@
 /*
  * @Date: 2019-09-27 23:40:07
  * @LastEditors: jinxiaodong
- * @LastEditTime: 2019-10-04 15:14:59
+ * @LastEditTime: 2019-11-20 09:40:28
  * @content: 入口文件
  */
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
-import * as mongoose from 'mongoose'
 import { ValidationPipe, Logger } from '@nestjs/common'
 
 async function bootstrap() {
-  mongoose.connect('mongodb://localhost/blog', {
-    useNewUrlParser: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-  })
   const app = await NestFactory.create(AppModule);
-  app.useGlobalPipes(new ValidationPipe())
+  app.useGlobalPipes(new ValidationPipe()) // 全局管道验证
 
   const options = new DocumentBuilder()
     .setTitle('博客接口')
