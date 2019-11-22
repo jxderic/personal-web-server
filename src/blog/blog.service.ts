@@ -2,7 +2,7 @@
  * @Author: jinxiaodong
  * @Date: 2019-11-19 20:34:12
  * @LastEditors: jinxiaodong
- * @LastEditTime: 2019-11-20 19:49:36
+ * @LastEditTime: 2019-11-21 14:03:04
  * @Description: blog service
  */
 import { Injectable } from '@nestjs/common';
@@ -16,7 +16,8 @@ export class BlogService {
 
   async findAll(title: string, page: number, pageSize: number) {
     const skip = (page - 1) * pageSize;
-    let model = await this.blogModel.find(title ? {title: title} : {}).skip(skip).limit(pageSize)
+    const reg = new RegExp(title, 'i') // 模糊查询
+    let model = await this.blogModel.find({title: {$regex: reg}}).skip(skip).limit(pageSize) // 分页查询
     return new Promise ((resolve, reject) => {
       this.blogModel.countDocuments({}, (err, count) => {
         resolve ({
