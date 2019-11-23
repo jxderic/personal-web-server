@@ -1,18 +1,19 @@
 /*
  * @Date: 2019-09-28 15:49:05
  * @LastEditors: jinxiaodong
- * @LastEditTime: 2019-11-22 18:44:07
+ * @LastEditTime: 2019-11-23 13:39:19
  * @content: I
  */
 import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { ApiOperation, ApiUseTags } from '@nestjs/swagger';
 import { NavService } from './techNav.service';
-import { CreateNavDto, QueryNavDto } from './dto/index';
+import { CategoryService } from './category.service';
+import { CreateNavDto, QueryNavDto, CreateCategoryDto } from './dto/index';
 
 @Controller('eric-api' + '/nav')
 @ApiUseTags('技术导航')
 export class NavController {
-  constructor(private readonly NavService: NavService) {}
+  constructor(private readonly NavService: NavService, private readonly CategoryService: CategoryService) {}
   @Get()
   @ApiOperation({ title: '显示导航列表' })
   async index(@Query() queryNavdto: QueryNavDto) {
@@ -24,7 +25,7 @@ export class NavController {
     }
   }
 
-  @Get(':id')
+  @Get('getNavItem/:id')
   @ApiOperation({ title: '显示某一个导航' })
   async OneNav(@Param('id') id: string) {
     let NavItem = await this.NavService.findOne(id)
@@ -67,13 +68,26 @@ export class NavController {
     }
   }
 
-  @Post('')
-  @ApiOperation({ title: '增加一个导航' })
-  async AddCategory(@Body() createNavdto: CreateNavDto) {
-    await this.NavService.create(createNavdto)
+  @Post('createCategory')
+  @ApiOperation({ title: '增加一个导航分类' })
+  async AddCategory(@Body() createCategoryDto: CreateCategoryDto) {
+    await this.CategoryService.create(createCategoryDto)
     return {
       code: 200,
       msg: 'success'
+    }
+  }
+
+  @Get('getCategorys')
+  @ApiOperation({ title: '获取导航分类列表' })
+  async getCategorys() {
+    let data = await this.CategoryService.findAll()
+    return {
+      code: 200,
+      msg: 'success',
+      data: {
+        list: data
+      }
     }
   }
 }
