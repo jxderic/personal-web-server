@@ -1,7 +1,7 @@
 /*
  * @Date: 2019-09-27 23:40:07
  * @LastEditors: jinxiaodong
- * @LastEditTime: 2019-11-20 09:40:28
+ * @LastEditTime: 2019-11-26 10:35:57
  * @content: 入口文件
  */
 import { NestFactory } from '@nestjs/core'
@@ -22,7 +22,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api-docs', app, document);
 
-  await app.listen(3000);
-  Logger.log(`App run in http://localhost:3000`)
+  await app.listen(3008);
+  Logger.log(`App run in http://localhost:3008`)
 }
 bootstrap();

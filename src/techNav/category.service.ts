@@ -2,7 +2,7 @@
  * @Author: jinxiaodong
  * @Date: 2019-11-19 20:34:12
  * @LastEditors: jinxiaodong
- * @LastEditTime: 2019-11-23 13:30:29
+ * @LastEditTime: 2019-11-26 17:26:32
  * @Description: Nav service
  */
 import { Injectable } from '@nestjs/common';
@@ -21,5 +21,13 @@ export class CategoryService {
 
   async findAll() {
     return await this.CategoryModel.find({})
+  }
+
+  async update(id: string, item: CreateCategoryDto): Promise<CreateCategoryDto> {
+    return await this.CategoryModel.findByIdAndUpdate(id, item, { new: true });
+  }
+
+  async delete(id: string): Promise<CreateCategoryDto> {
+    return await this.CategoryModel.findByIdAndRemove(id);
   }
 }

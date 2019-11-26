@@ -2,11 +2,11 @@
  * @Author: jinxiaodong
  * @Date: 2019-11-19 20:34:12
  * @LastEditors: jinxiaodong
- * @LastEditTime: 2019-11-23 11:44:42
+ * @LastEditTime: 2019-11-26 20:07:18
  * @Description: Nav service
  */
 import { Injectable } from '@nestjs/common';
-import { CreateNavDto } from './dto/index';
+import { CreateNavDto, QueryNavDto } from './dto/index';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 
@@ -14,10 +14,11 @@ import { InjectModel } from '@nestjs/mongoose';
 export class NavService {
   constructor(@InjectModel('Nav') private readonly NavModel: Model<CreateNavDto>) {}
 
-  async findAll(title: string, page: number, pageSize: number) {
-    const skip = (page - 1) * pageSize;
-    const reg = new RegExp(title, 'i') // 模糊查询
-    let model = await this.NavModel.find({title: {$regex: reg}}).skip(skip).limit(pageSize) // 分页查询
+  async findAll(param: QueryNavDto) {
+    const skip = (param.page - 1) * (param.limit - 0);
+    const reg1 = new RegExp(param.title, 'i') // 模糊查询
+    const reg2 = new RegExp(param.categoryName, 'i')
+    let model = await this.NavModel.find({title: {$regex: reg1}, category: {$regex: reg2}}).skip(skip).limit(param.limit - 0) // 分页查询
     return new Promise ((resolve, reject) => {
       this.NavModel.countDocuments({}, (err, count) => {
         resolve ({

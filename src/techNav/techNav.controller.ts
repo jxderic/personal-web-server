@@ -1,7 +1,7 @@
 /*
  * @Date: 2019-09-28 15:49:05
  * @LastEditors: jinxiaodong
- * @LastEditTime: 2019-11-23 13:39:19
+ * @LastEditTime: 2019-11-26 17:29:19
  * @content: I
  */
 import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
@@ -17,7 +17,7 @@ export class NavController {
   @Get()
   @ApiOperation({ title: '显示导航列表' })
   async index(@Query() queryNavdto: QueryNavDto) {
-    let data = await this.NavService.findAll(queryNavdto.title, parseInt(queryNavdto.page + ''), parseInt(queryNavdto.limit + ''))
+    let data = await this.NavService.findAll(queryNavdto)
     return {
       code: 200,
       msg: 'success',
@@ -88,6 +88,26 @@ export class NavController {
       data: {
         list: data
       }
+    }
+  }
+
+  @Put('updateCategory/:id')
+  @ApiOperation({ title: '更新类别' })
+  async UpdateCategory(@Param('id') id: string, @Body() createCategoryDto: CreateCategoryDto) {
+    await this.CategoryService.update(id, createCategoryDto)
+    return {
+      code: 200,
+      msg: 'success'
+    }
+  }
+
+  @Delete('deleteCategory/:id')
+  @ApiOperation({ title: '删除类别' })
+  async DeleteCategory(@Param('id') id: string) {
+    await this.CategoryService.delete(id)
+    return {
+      code: 200,
+      msg: 'success'
     }
   }
 }
