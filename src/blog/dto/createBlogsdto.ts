@@ -1,8 +1,11 @@
 /*
-@Date: 2019/9/28 23:00  @Author: Asen Wang
-@Contact Email: taiyangdexingxing@gmail.com
-@content:
-*/
+ * @Author: jinxiaodong
+ * @Date: 2019-11-19 09:38:35
+ * @LastEditors: jinxiaodong
+ * @LastEditTime: 2019-11-27 13:48:09
+ * @Description:  blog元数据
+ */
+
 import { ApiModelProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString } from 'class-validator';
 
