@@ -1,0 +1,12 @@
+language: node_js
+cache:
+  directories:
+  - node_modules      # 缓存 node_modules
+node_js: stable       # 稳定版本
+branches:
+  only:
+  - master            # 每次 push 或者 pull request 时会触发持续集成
+install:
+  - npm install       # 当然你可以使用 yarn
+scripts:
+  - npm build         # build
