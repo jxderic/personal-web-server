@@ -12,6 +12,11 @@ import { NavModule } from './techNav/techNav.module';
 import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  imports: [BlogModule, LoginModule, NavModule, MongooseModule.forRoot('mongodb://localhost:27017/eric')]
+  imports: [
+    BlogModule,
+    LoginModule,
+    NavModule,
+    MongooseModule.forRoot('mongodb://localhost:27017/eric'),
+  ],
 })
 export class AppModule {}

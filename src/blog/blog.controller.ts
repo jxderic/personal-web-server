@@ -17,7 +17,7 @@ export class BlogController {
   constructor(
     private readonly blogService: BlogService,
     private readonly TagService: TagService,
-    private readonly categoryService: CategoryService
+    private readonly categoryService: CategoryService,
   ) {}
   @Get()
   @ApiOperation({ title: '显示文章列表页面' })
@@ -26,7 +26,7 @@ export class BlogController {
     return {
       code: 200,
       msg: 'success',
-      data: data
+      data: data,
     };
   }
 
@@ -38,8 +38,8 @@ export class BlogController {
       code: 200,
       msg: 'success',
       data: {
-        article: blogItem
-      }
+        article: blogItem,
+      },
     };
   }
 
@@ -49,7 +49,7 @@ export class BlogController {
     await this.blogService.create(createBlogdto);
     return {
       code: 200,
-      msg: 'success'
+      msg: 'success',
     };
   }
 
@@ -59,7 +59,7 @@ export class BlogController {
     await this.blogService.update(id, updateBlogdto);
     return {
       code: 200,
-      msg: 'success'
+      msg: 'success',
     };
   }
 
@@ -69,7 +69,7 @@ export class BlogController {
     await this.blogService.delete(id);
     return {
       code: 200,
-      msg: 'success'
+      msg: 'success',
     };
   }
 
@@ -79,7 +79,7 @@ export class BlogController {
     await this.TagService.create(createTagDto);
     return {
       code: 200,
-      msg: 'success'
+      msg: 'success',
     };
   }
 
@@ -89,7 +89,7 @@ export class BlogController {
     await this.TagService.update(id, createTagDto);
     return {
       code: 200,
-      msg: 'success'
+      msg: 'success',
     };
   }
 
@@ -100,7 +100,7 @@ export class BlogController {
     return {
       code: 200,
       msg: 'success',
-      data: data
+      data: data,
     };
   }
 
@@ -110,7 +110,7 @@ export class BlogController {
     await this.TagService.delete(id);
     return {
       code: 200,
-      msg: 'success'
+      msg: 'success',
     };
   }
 
@@ -120,7 +120,7 @@ export class BlogController {
     await this.categoryService.create(createTagDto);
     return {
       code: 200,
-      msg: 'success'
+      msg: 'success',
     };
   }
 
@@ -130,7 +130,7 @@ export class BlogController {
     await this.categoryService.update(id, createTagDto);
     return {
       code: 200,
-      msg: 'success'
+      msg: 'success',
     };
   }
 
@@ -141,7 +141,7 @@ export class BlogController {
     return {
       code: 200,
       msg: 'success',
-      data: data
+      data: data,
     };
   }
 
@@ -151,7 +151,7 @@ export class BlogController {
     await this.categoryService.delete(id);
     return {
       code: 200,
-      msg: 'success'
+      msg: 'success',
     };
   }
 }
