@@ -1,8 +1,8 @@
 /*
  * @Author: jinxiaodong
  * @Date: 2019-11-18 16:57:12
- * @LastEditors: jinxiaodong
- * @LastEditTime: 2019-12-18 22:56:21
+ * @LastEditors  : jinxiaodong
+ * @LastEditTime : 2019-12-19 19:25:32
  * @Description: module入口
  */
 import { Module } from '@nestjs/common';
@@ -16,7 +16,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     BlogModule,
     LoginModule,
     NavModule,
-    MongooseModule.forRoot('mongodb://root:123456@127.0.0.1:27017/nest'),
+    MongooseModule.forRoot('mongodb://root:123456@my-mongo-container:27017/nest'),
   ],
 })
 export class AppModule {}
