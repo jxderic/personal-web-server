@@ -1,17 +1,40 @@
 version: '3'
 
+networks:
+  my-network:
+    driver: bridge
+
+volumes:
+  node_modules:
+  mongo_data:
+
 services:
-  database:
-    image: 'mongo'
-    container_name: 'my-mongo-container'
+  ### server ########################
+  server:
+    container_name: server
+    build: .
+    ports:
+      - 127.0.0.1:3008:3008
+    volumes:
+      - ./uploads:/usr/src/app/uploads
+    restart: always
+    depends_on:
+      - mongo
+    networks:
+      - my-network
+  ### mongoDB ########################
+  mongo:
+    container_name: mongo
+    build: ./mongo
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=123456
-      - MONGO_INITDB_DATABASE=nest
+      - MONGO_INITDB_DATABASE=personWeb
+    restart: always
+    networks:
+      - my-network
     ports:
-      - '27017:27017'
+      - 127.0.0.1:27017:27017
     volumes:
-      - mongo-volume:/data/db
-      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
-volumes:
-  mongo-volume:
+      - mongo_data:/data/db
+      - ./mongo/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
