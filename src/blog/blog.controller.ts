@@ -1,7 +1,7 @@
 /*
  * @Date: 2019-09-28 15:49:05
  * @LastEditors: jinxiaodong
- * @LastEditTime: 2019-12-03 20:03:30
+ * @LastEditTime: 2020-11-04 14:16:29
  * @content: 文章控制器
  */
 import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
@@ -11,7 +11,7 @@ import { TagService } from './tag.service';
 import { CategoryService } from './cateGory.service';
 import { CreateBlogsDto, QueryBlogDto, CreateTagDto } from './dto/index';
 
-@Controller('eric-api' + '/articles')
+@Controller()
 @ApiUseTags('文章网站')
 export class BlogController {
   constructor(

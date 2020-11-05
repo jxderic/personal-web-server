@@ -1,7 +1,7 @@
 /*
  * @Date: 2019-09-28 15:49:05
  * @LastEditors: jinxiaodong
- * @LastEditTime: 2019-11-20 14:23:59
+ * @LastEditTime: 2020-11-04 14:16:40
  * @content: I
  */
 import { Controller, Post, Body } from '@nestjs/common';
@@ -10,7 +10,7 @@ import { ApiOperation, ApiUseTags } from '@nestjs/swagger';
 import { LoginDto } from './dto';
 import 'dotenv/config'
 
-@Controller('eric-api/users')
+@Controller()
 @ApiUseTags('登录')
 export class  LoginController {
   constructor(private readonly loginService: LoginService) {}
@@ -50,5 +50,10 @@ export class  LoginController {
         }
       }
     }
+  }
+
+  @Post('deploy')
+  async deploy() {
+    return await this.loginService.deploy();
   }
 }

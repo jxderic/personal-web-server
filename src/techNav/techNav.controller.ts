@@ -1,7 +1,7 @@
 /*
  * @Date: 2019-09-28 15:49:05
  * @LastEditors: jinxiaodong
- * @LastEditTime: 2019-11-26 17:29:19
+ * @LastEditTime: 2020-11-04 14:16:50
  * @content: I
  */
 import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
@@ -10,7 +10,7 @@ import { NavService } from './techNav.service';
 import { CategoryService } from './category.service';
 import { CreateNavDto, QueryNavDto, CreateCategoryDto } from './dto/index';
 
-@Controller('eric-api' + '/nav')
+@Controller()
 @ApiUseTags('技术导航')
 export class NavController {
   constructor(private readonly NavService: NavService, private readonly CategoryService: CategoryService) {}
