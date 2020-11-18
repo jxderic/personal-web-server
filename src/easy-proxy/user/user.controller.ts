@@ -17,7 +17,7 @@ export class UserController {
   public async signin (@Body() req1: LoginDto, @Request() req: Req) {
     const res = Object.assign({}, req.user, await this.userService.login(req.user))
     return {
-      code: 200,
+      code: 0,
       data: res,
       msg: '登录成功'
     }
@@ -29,7 +29,7 @@ export class UserController {
   public async create (@Body() req: LoginDto) {
     await this.userService.create(req)
     return {
-      code: 200,
+      code: 0,
       msg: 'success'
     }
   }
@@ -39,7 +39,7 @@ export class UserController {
   @UseGuards(AuthGuard('jwt'))
   public async userInfo(@Request() req) {
     return {
-      code: 200,
+      code: 0,
       data: req.user,
       msg: '登录成功'
     }

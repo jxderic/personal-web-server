@@ -2,7 +2,7 @@
  * @Author: jinxiaodong
  * @Date: 2019-11-18 16:57:12
  * @LastEditors: jinxiaodong
- * @LastEditTime: 2020-11-04 16:31:08
+ * @LastEditTime: 2020-11-10 16:33:49
  * @Description: module入口
  */
 import { Module } from '@nestjs/common';

@@ -12,12 +12,12 @@ import { JwtModule } from '@nestjs/jwt';
     JwtModule.register({
       secret: jwtConstants.secret,
       signOptions: {
-        expiresIn: '5m'
-      }
-    })
+        expiresIn: '5m',
+      },
+    }),
   ],
   controllers: [UserController],
   providers: [UserService],
-  exports: [UserService]
+  exports: [UserService],
 })
 export class EasyProxyModule {}
